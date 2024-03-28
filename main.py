@@ -13,7 +13,7 @@ def getutc():
     return datetime.utcnow()
 
 
-def write_distance(table) -> None:
+def write_percentage(table) -> None:
     """Executes SQL statements
     :param table, con:
     :return:
@@ -21,7 +21,7 @@ def write_distance(table) -> None:
     connection = mariadb.connect(
         host=db_host, user=db_user, password=db_pass, database=db_name
     )
-    statement = f"INSERT INTO {table} (time, tank) VALUES('{getutc()}', {get_distance()});"
+    statement = f"INSERT INTO {table} (time, tank) VALUES('{getutc()}', {calculatewaterlevel()});"
 
     cursor = connection.cursor()
     cursor.execute(statement)
@@ -80,5 +80,4 @@ def calculatewaterlevel():
     return percentage
 
 
-#write_distance("tank")
-print(calculatewaterlevel())
+write_percentage("tank")
