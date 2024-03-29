@@ -62,6 +62,8 @@ def get_distance():
 
     distancecm = round(pulse_duration * 17150, 2)
 
+    print(distancecm)
+
     GPIO.cleanup()
 
     return distancecm
